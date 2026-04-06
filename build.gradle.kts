@@ -32,6 +32,7 @@ intellijPlatform {
         name = providers.gradleProperty("pluginName")
         ideaVersion {
             sinceBuild = "241"
+            untilBuild = provider { "" }
         }
     }
 }

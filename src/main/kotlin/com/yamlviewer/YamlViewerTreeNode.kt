@@ -27,5 +27,5 @@ class YamlViewerTreeNode(
         (leafEntries as MutableList).add(entry)
     }
 
-    override fun toString(): String = key ?: "[${parent?.let { (it as YamlViewerTreeNode).getIndex(this) } ?: 0}]"
+    override fun toString(): String = key ?: "[${parent?.let { (it as? YamlViewerTreeNode)?.getIndex(this) } ?: 0}]"
 }

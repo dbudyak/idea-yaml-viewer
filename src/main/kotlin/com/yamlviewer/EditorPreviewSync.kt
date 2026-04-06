@@ -56,5 +56,6 @@ class EditorPreviewSync(
 
     fun dispose() {
         editor.caretModel.removeCaretListener(caretListener)
+        previewPanel.tree.removeTreeSelectionListener(treeSelectionListener)
     }
 }

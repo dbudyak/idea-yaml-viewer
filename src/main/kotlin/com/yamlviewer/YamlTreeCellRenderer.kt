@@ -49,7 +49,7 @@ class YamlTreeCellRenderer : TreeCellRenderer {
         val component = SimpleColoredComponent()
         component.append(node.key ?: "document", BOLD_ATTRIBUTES)
         if (!expanded) {
-            component.append("  ${node.nodeChildCount} keys", GRAY_ATTRIBUTES)
+            component.append("  \u00B7 ${node.nodeChildCount} keys", GRAY_ATTRIBUTES)
         }
         component.ipad = JBUI.insetsLeft(2)
         return component
@@ -97,7 +97,7 @@ class YamlTreeCellRenderer : TreeCellRenderer {
         val component = SimpleColoredComponent()
         component.append(node.key ?: "list", BOLD_ATTRIBUTES)
         if (!expanded) {
-            component.append("  ${node.nodeChildCount} items", GRAY_ATTRIBUTES)
+            component.append("  \u00B7 ${node.nodeChildCount} items", GRAY_ATTRIBUTES)
         }
         component.ipad = JBUI.insetsLeft(2)
         return component

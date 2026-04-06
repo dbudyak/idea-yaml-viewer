@@ -12,7 +12,10 @@ import com.intellij.util.Alarm
 import com.intellij.util.ui.JBUI
 import java.awt.BorderLayout
 import java.awt.FlowLayout
-import javax.swing.*
+import javax.swing.AbstractAction
+import javax.swing.JComponent
+import javax.swing.JPanel
+import javax.swing.KeyStroke
 import javax.swing.event.DocumentEvent
 import javax.swing.event.DocumentListener
 import javax.swing.event.TreeSelectionEvent
@@ -33,8 +36,6 @@ class YamlPreviewPanel(
     private val statusLabel = JBLabel()
     private val filterAlarm: Alarm
 
-    var onTreeSelectionChanged: ((YamlViewerTreeNode) -> Unit)? = null
-
     init {
         Disposer.register(parentDisposable, this)
         filterAlarm = Alarm(Alarm.ThreadToUse.SWING_THREAD, this)
@@ -52,7 +53,6 @@ class YamlPreviewPanel(
         tree.addTreeSelectionListener { _: TreeSelectionEvent ->
             val node = tree.lastSelectedPathComponent as? YamlViewerTreeNode ?: return@addTreeSelectionListener
             updateBreadcrumbs(node)
-            onTreeSelectionChanged?.invoke(node)
         }
 
         searchField.textEditor.document.addDocumentListener(object : DocumentListener {
@@ -71,6 +71,32 @@ class YamlPreviewPanel(
 
         add(topPanel, BorderLayout.NORTH)
         add(JBScrollPane(tree), BorderLayout.CENTER)
+
+        // Cmd+F to focus search
+        val focusSearchAction = "focusSearch"
+        getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(
+            KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.Toolkit.getDefaultToolkit().menuShortcutKeyMaskEx),
+            focusSearchAction
+        )
+        getActionMap().put(focusSearchAction, object : AbstractAction() {
+            override fun actionPerformed(e: java.awt.event.ActionEvent) {
+                searchField.textEditor.requestFocusInWindow()
+            }
+        })
+
+        // Escape to clear search
+        searchField.textEditor.let { editor ->
+            editor.getInputMap(JComponent.WHEN_FOCUSED).put(
+                KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0),
+                "clearSearch"
+            )
+            editor.actionMap.put("clearSearch", object : AbstractAction() {
+                override fun actionPerformed(e: java.awt.event.ActionEvent) {
+                    searchField.text = ""
+                    tree.requestFocusInWindow()
+                }
+            })
+        }
     }
 
     fun rebuild() {
@@ -163,10 +189,14 @@ class YamlPreviewPanel(
             return
         }
 
-        val root = treeModel.root as DefaultMutableTreeNode
+        // Build a fresh copy to filter (don't mutate the working model)
+        val filteredModel = YamlTreeModel(psiFile)
+        val root = filteredModel.root as DefaultMutableTreeNode
         filterNode(root, query)
-        treeModel.reload()
 
+        tree.model = filteredModel
+        treeModel = filteredModel
+        filteredModel.reload()
         expandAll(root)
     }
 

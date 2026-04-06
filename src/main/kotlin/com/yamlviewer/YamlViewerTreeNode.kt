@@ -14,7 +14,8 @@ class YamlViewerTreeNode(
 ) : DefaultMutableTreeNode() {
 
     /** For leaf group nodes: the scalar entries as key/value/type triples */
-    val leafEntries: List<LeafEntry> = mutableListOf()
+    private val _leafEntries: MutableList<LeafEntry> = mutableListOf()
+    val leafEntries: List<LeafEntry> get() = _leafEntries
 
     data class LeafEntry(
         val key: String,
@@ -24,7 +25,7 @@ class YamlViewerTreeNode(
     )
 
     fun addLeafEntry(entry: LeafEntry) {
-        (leafEntries as MutableList).add(entry)
+        _leafEntries.add(entry)
     }
 
     override fun toString(): String = key ?: "[${parent?.let { (it as? YamlViewerTreeNode)?.getIndex(this) } ?: 0}]"

@@ -1,0 +1,14 @@
+<idea-plugin>
+    <id>com.yamlviewer</id>
+    <name>YAML Viewer</name>
+    <version>0.1.0</version>
+    <vendor>yamlviewer</vendor>
+    <description>Human-readable YAML viewer with tree/table hybrid rendering</description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.plugins.yaml</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileEditorProvider implementation="com.yamlviewer.YamlViewerEditorProvider"/>
+    </extensions>
+</idea-plugin>

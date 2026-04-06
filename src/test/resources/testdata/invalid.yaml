@@ -1,0 +1,6 @@
+valid_key: value
+broken:
+  - item1
+  - item2
+  bad_indent: oops
+another: works

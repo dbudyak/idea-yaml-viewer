@@ -1,0 +1,8 @@
+metadata:
+  name: my-app
+  namespace: default
+  labels:
+    app: my-app
+    env: production
+spec:
+  replicas: 3

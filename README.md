@@ -57,20 +57,6 @@ To run the test suite:
 ./gradlew test
 ```
 
-## Project layout
-
-```
-src/main/kotlin/com/yamlviewer/
-  YamlViewerEditorProvider.kt    FileEditorProvider, wires up TextEditorWithPreview
-  YamlPreviewPanel.kt            JComponent: search bar, breadcrumbs, JTree
-  YamlTreeModel.kt               DefaultTreeModel wrapper with path/offset lookup
-  YamlTreeModelBuilder.kt        PSI → view-model translation
-  YamlTreeCellRenderer.kt        Hybrid tree+table rendering with type badges
-  EditorPreviewSync.kt           Bidirectional caret ↔ tree selection sync
-  YamlNodeType.kt                Section / LeafGroup / Sequence / Scalar
-  YamlScalarType.kt              String / Int / Float / Bool / Null detection
-  YamlViewerTreeNode.kt          Tree node data class
-```
 
 ## Contributing
 

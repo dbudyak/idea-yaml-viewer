@@ -1,5 +1,5 @@
 <idea-plugin>
-    <id>com.yamlviewer</id>
+    <id>io.github.dbudyak.yamlviewer</id>
     <name>YAML Viewer</name>
     <version>0.1.0</version>
     <vendor email="dmitry.budyak@gmail.com" url="https://github.com/dbudyak/idea-yaml-viewer">Dima Budiak</vendor>

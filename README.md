@@ -20,7 +20,7 @@ A navigable, human-readable tree/table view for any YAML file, rendered next to 
 
 ### From JetBrains Marketplace
 
-*(Not yet published — coming soon.)*
+Install directly from the [JetBrains Marketplace listing](https://plugins.jetbrains.com/plugin/31130-yaml-viewer), or in IntelliJ IDEA: `Settings` → `Plugins` → `Marketplace` tab → search for **YAML Viewer**.
 
 ### From disk
 

@@ -2,8 +2,42 @@
     <id>com.yamlviewer</id>
     <name>YAML Viewer</name>
     <version>0.1.0</version>
-    <vendor>yamlviewer</vendor>
-    <description>Human-readable YAML viewer with tree/table hybrid rendering</description>
+    <vendor email="dmitry.budyak@gmail.com" url="https://github.com/dbudyak/idea-yaml-viewer">Dima Budiak</vendor>
+
+    <description><![CDATA[
+        <h2>Human-readable YAML viewer with tree/table hybrid rendering</h2>
+        <p>
+            Tired of scrolling through 500-line Kubernetes manifests, Helm charts, or CI configs?
+            YAML Viewer adds a navigable, structured preview next to any <code>.yaml</code> / <code>.yml</code> file —
+            think OpenAPI/Swagger UI, but for arbitrary YAML.
+        </p>
+        <h3>Features</h3>
+        <ul>
+            <li><b>Split editor</b> — raw YAML on the left, rendered tree view on the right</li>
+            <li><b>Hybrid tree + table rendering</b> — nested sections collapse; leaf groups render as compact key/value/type tables</li>
+            <li><b>Type badges</b> — string, int, float, bool, null shown inline at a glance</li>
+            <li><b>Bidirectional sync</b> — click a node in the tree to jump to the line in the editor, and vice versa</li>
+            <li><b>Search &amp; filter</b> — <kbd>Cmd/Ctrl+F</kbd> filters the tree by key or value; <kbd>Escape</kbd> clears</li>
+            <li><b>Breadcrumb navigation</b> — see the full path to the selected node, click to jump to any ancestor</li>
+            <li><b>Invalid-YAML tolerant</b> — keeps the last valid view while you edit, instead of going blank</li>
+            <li><b>Schema-agnostic</b> — works with any YAML file; no special-casing for specific formats</li>
+        </ul>
+        <p>
+            Built on the IntelliJ Platform YAML PSI — no external parsers, no performance surprises.
+        </p>
+    ]]></description>
+
+    <change-notes><![CDATA[
+        <h3>0.1.0</h3>
+        <ul>
+            <li>Initial release</li>
+            <li>Split editor with hybrid tree/table viewer</li>
+            <li>Bidirectional sync between editor caret and tree selection</li>
+            <li>Search/filter with debounced query and keyboard shortcuts</li>
+            <li>Breadcrumb navigation bar</li>
+            <li>Graceful handling of invalid YAML during edits</li>
+        </ul>
+    ]]></change-notes>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>org.jetbrains.plugins.yaml</depends>

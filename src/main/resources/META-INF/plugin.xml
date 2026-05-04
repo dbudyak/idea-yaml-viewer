@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>io.github.dbudyak.yamlviewer</id>
     <name>YAML Viewer</name>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
     <vendor email="dmitry.budyak@gmail.com" url="https://github.com/dbudyak/idea-yaml-viewer">Dima Budiak</vendor>
 
     <description><![CDATA[
@@ -28,6 +28,11 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <h3>0.1.1</h3>
+        <ul>
+            <li>Fixed caret jumping to a parent node when editing nested YAML values (rebuild no longer fires sync-to-editor with a stale selection)</li>
+            <li>Widened compatibility to IntelliJ IDEA 2024.1 through 2029.x</li>
+        </ul>
         <h3>0.1.0</h3>
         <ul>
             <li>Initial release</li>

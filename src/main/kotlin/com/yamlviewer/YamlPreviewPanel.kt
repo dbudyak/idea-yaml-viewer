@@ -103,21 +103,11 @@ class YamlPreviewPanel(
         ApplicationManager.getApplication().assertIsDispatchThread()
 
         val expandedPaths = treeModel.collectExpandedPaths(tree)
-        val selectedPath = (tree.lastSelectedPathComponent as? YamlViewerTreeNode)?.yamlPath
 
         treeModel = YamlTreeModel(psiFile)
         tree.model = treeModel
 
         treeModel.restoreExpandedPaths(tree, expandedPaths)
-
-        if (selectedPath != null) {
-            val node = treeModel.findByYamlPath(selectedPath)
-            if (node != null) {
-                val tp = treeModel.treePath(node)
-                tree.selectionPath = tp
-                tree.scrollPathToVisible(tp)
-            }
-        }
 
         statusLabel.isVisible = false
     }

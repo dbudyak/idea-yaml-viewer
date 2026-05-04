@@ -40,6 +40,7 @@ class YamlViewerEditorProvider : FileEditorProvider, DumbAware {
                         previewPanel.showInvalidYamlStatus()
                     } else {
                         previewPanel.rebuild()
+                        sync.syncEditorToTree()
                     }
                 }, 300)
             }

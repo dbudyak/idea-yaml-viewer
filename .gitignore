@@ -4,3 +4,4 @@ build/
 *.iml
 .superpowers/
 .intellijPlatform/
+.DS_Store
